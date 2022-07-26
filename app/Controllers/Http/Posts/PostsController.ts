@@ -15,7 +15,7 @@ export default class PostsController {
     const myDataRequest = request.only(['title', 'post'])
     try {
       const post = await Post.create(myDataRequest)
-      return response.status(202).send(post)
+      return response.status(201).send(post)
     } catch (error) {
       return response.status(500).send(error)
     }
@@ -37,6 +37,22 @@ export default class PostsController {
       // tem essas 2 formas abaixo
       return response.status(500).json({ error })
       // return response.notFound({ error: 'post não encontrado!' })
+    }
+  }
+
+  protected async update({ params, request, response }: HttpContextContract) {
+    const { id } = params
+    try {
+      let post = await Post.find(id)
+      if (post) {
+        const myData = request.only(['title', 'post'])
+        post.merge(myData)
+        post.save()
+        return response.status(200).json(post)
+      }
+      return response.status(404).json({ msg: 'not found ' })
+    } catch (error) {
+      return response.status(500).json({ error })
     }
   }
 

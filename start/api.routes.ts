@@ -7,6 +7,7 @@ Route.group(() => {
     Route.get('/', 'PostsController.index')
     Route.post('/', 'PostsController.store')
     Route.get('/:id', 'PostsController.postsById')
+    Route.put('/:id', 'PostsController.update')
     Route.delete('/:id', 'PostsController.delete')
     Route.delete('/delete/:id', 'PostsController.destroy')
   }).prefix('/posts/').namespace('App/Controllers/Http/Posts')
