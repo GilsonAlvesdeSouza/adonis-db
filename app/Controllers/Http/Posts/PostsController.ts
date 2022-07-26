@@ -21,7 +21,7 @@ export default class PostsController {
     }
   }
 
-  protected async postsById({ params, response }: HttpContextContract) {
+  protected async show({ params, response }: HttpContextContract) {
     const { id } = params
 
     try {
@@ -56,7 +56,7 @@ export default class PostsController {
     }
   }
 
-  protected async delete({ params, response }: HttpContextContract) {
+  protected async destroy({ params, response }: HttpContextContract) {
     try {
       const post = await Post.find(params.id)
       if (post) {
@@ -69,7 +69,7 @@ export default class PostsController {
     }
   }
 
-  protected async destroy({ response, params }: HttpContextContract) {
+  protected async delete({ response, params }: HttpContextContract) {
     try {
       const post = await Post.find(params.id)
       if (post) {

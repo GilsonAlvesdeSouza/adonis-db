@@ -4,13 +4,9 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
 
   Route.group(() => {
-    Route.get('/', 'PostsController.index')
-    Route.post('/', 'PostsController.store')
-    Route.get('/:id', 'PostsController.postsById')
-    Route.put('/:id', 'PostsController.update')
-    Route.delete('/:id', 'PostsController.delete')
-    Route.delete('/delete/:id', 'PostsController.destroy')
-  }).prefix('/posts/').namespace('App/Controllers/Http/Posts')
+    Route.resource('posts', 'PostsController').apiOnly()
+    Route.delete('posts/delete/:id', 'PostsController.delete').as('posts.delete')
+  }).namespace('App/Controllers/Http/Posts')
 
   Route.group(() => {
     Route.get('/', 'TrashPostsController.index')
