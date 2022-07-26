@@ -9,9 +9,9 @@ export default class extends BaseSchema {
       table.string('title', 100).notNullable()
       table.text('content', 'longtext').notNullable()
 
-      table.dateTime('deleted_at').defaultTo(null)
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
+      table.timestamp('deleted_at', { useTz: true }).nullable()
     })
   }
 
